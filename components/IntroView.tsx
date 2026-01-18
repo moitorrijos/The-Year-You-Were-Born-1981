@@ -82,7 +82,11 @@ const IntroView: React.FC<IntroViewProps> = ({ onStartJourney }) => {
       </div>
 
       <div className="font-mono-display absolute bottom-8 text-xs text-neutral-600">
-        Powered by Gemini AI
+        Created by{" "}
+        <a href="" className="frontendjuan com">
+          FrontEndJuan
+        </a>{" "}
+        with the help of Gemini AI.
       </div>
     </div>
   );
