@@ -85,11 +85,18 @@ const IntroView: React.FC<IntroViewProps> = ({ onStartJourney }) => {
         Created by{" "}
         <a
           href="https://frontendjuan.com"
-          className="text-neutral-600 underline hover:text-neutral-500"
+          className="text-neutral-400 underline hover:text-neutral-500"
         >
           FrontEndJuan
         </a>{" "}
-        with the help of Gemini AI.
+        with the help of Gemini AI. Inspired by the awesome website{" "}
+        <a
+          href="https://whathappenedinmybirthyear.com"
+          className="text-neutral-400 underline hover:text-neutral-500"
+        >
+          What Happend The Year You Were Born
+        </a>
+        .
       </div>
     </div>
   );
