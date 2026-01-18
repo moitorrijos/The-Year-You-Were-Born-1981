@@ -83,7 +83,10 @@ const IntroView: React.FC<IntroViewProps> = ({ onStartJourney }) => {
 
       <div className="font-mono-display absolute bottom-8 text-xs text-neutral-600">
         Created by{" "}
-        <a href="" className="frontendjuan com">
+        <a
+          href="https://frontendjuan.com"
+          className="text-neutral-600 underline hover:text-neutral-500"
+        >
           FrontEndJuan
         </a>{" "}
         with the help of Gemini AI.
