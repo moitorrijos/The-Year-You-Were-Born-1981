@@ -64,7 +64,7 @@ const StoryView: React.FC<StoryViewProps> = ({ story, year, onReset }) => {
     >
       {/* Header */}
       <header className="flex-none p-6 flex justify-between items-center border-b border-white/10 bg-black/50 backdrop-blur-md sticky top-0 z-20">
-        <h1 className="text-2xl font-serif-display font-bold text-white">{year}</h1>
+        <h1 className="text-2xl font-serif-playfair font-bold text-white">{year}</h1>
         <button 
           onClick={onReset}
           className="p-2 hover:bg-white/10 rounded-full transition-colors group"
@@ -81,7 +81,7 @@ const StoryView: React.FC<StoryViewProps> = ({ story, year, onReset }) => {
       >
         <div className="max-w-3xl mx-auto">
           <div className="prose prose-invert prose-lg md:prose-xl max-w-none">
-            <div className="font-serif-display text-lg md:text-2xl text-neutral-200">
+            <div className="font-serif-playfair text-lg md:text-2xl text-neutral-200">
                {formattedText}
                {isTyping && <span className="inline-block w-2 h-6 md:h-8 bg-white ml-1 animate-blink align-middle"></span>}
             </div>
