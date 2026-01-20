@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { RefreshCcw, Share2, Volume2, VolumeX } from 'lucide-react';
+import { RefreshCcw } from 'lucide-react';
 
 interface StoryViewProps {
   story: string;
