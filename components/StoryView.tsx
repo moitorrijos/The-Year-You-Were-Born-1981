@@ -39,6 +39,11 @@ const StoryView: React.FC<StoryViewProps> = ({ story, year, onReset }) => {
       } else {
         setIsTyping(false);
         clearInterval(interval);
+        const buttonContainer = document.querySelector('.bmc-btn-container')
+        if (buttonContainer) {
+          (buttonContainer as HTMLElement).style.visibility = 'visible';
+          (buttonContainer as HTMLElement).style.opacity = '1';
+        }
       }
     }, typingSpeed);
 
