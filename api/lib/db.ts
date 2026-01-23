@@ -1,9 +1,20 @@
-import { createClient } from '@libsql/client';
+import { createClient, Client } from '@libsql/client';
 
-const db = createClient({
-  url: process.env.TURSO_DATABASE_URL!,
-  authToken: process.env.TURSO_AUTH_TOKEN,
-});
+let db: Client | null = null;
+
+function getDb(): Client {
+  if (!db) {
+    const url = process.env.TURSO_DATABASE_URL;
+    const authToken = process.env.TURSO_AUTH_TOKEN;
+
+    if (!url) {
+      throw new Error('TURSO_DATABASE_URL environment variable is not set');
+    }
+
+    db = createClient({ url, authToken });
+  }
+  return db;
+}
 
 export interface CachedStory {
   year: number;
@@ -13,7 +24,7 @@ export interface CachedStory {
 
 export async function getCachedStory(year: number): Promise<string | null> {
   try {
-    const result = await db.execute({
+    const result = await getDb().execute({
       sql: 'SELECT content FROM stories WHERE year = ?',
       args: [year],
     });
@@ -31,7 +42,7 @@ export async function getCachedStory(year: number): Promise<string | null> {
 
 export async function cacheStory(year: number, content: string): Promise<void> {
   try {
-    await db.execute({
+    await getDb().execute({
       sql: 'INSERT OR REPLACE INTO stories (year, content, created_at) VALUES (?, ?, datetime("now"))',
       args: [year, content],
     });
