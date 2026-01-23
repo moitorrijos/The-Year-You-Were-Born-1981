@@ -4,11 +4,11 @@ let db: Client | null = null;
 
 function getDb(): Client {
   if (!db) {
-    const url = process.env.TURSO_DATABASE_URL;
-    const authToken = process.env.TURSO_AUTH_TOKEN;
+    const url = process.env.TYYWB_DB_TURSO_DATABASE_URL;
+    const authToken = process.env.TYYWB_DB_TURSO_AUTH_TOKEN;
 
     if (!url) {
-      throw new Error('TURSO_DATABASE_URL environment variable is not set');
+      throw new Error('TYYWB_DB_TURSO_DATABASE_URL environment variable is not set');
     }
 
     db = createClient({ url, authToken });
