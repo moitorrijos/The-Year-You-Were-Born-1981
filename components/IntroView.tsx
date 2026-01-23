@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
+import Footer from "./Footer";
 
 interface IntroViewProps {
   onStartJourney: (year: string) => void;
@@ -32,7 +33,7 @@ const IntroView: React.FC<IntroViewProps> = ({ onStartJourney }) => {
       {/* Background Ambience */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-neutral-800 via-black to-black opacity-50"></div>
 
-      <div className="animate-fade-in-up z-10 w-full max-w-md space-y-8 text-center">
+      <main className="animate-fade-in-up z-10 w-full max-w-md space-y-8 text-center">
         <div className="space-y-2">
           <div className="mb-4 flex justify-center">
             <Clock className="h-12 w-12 text-white/80" />
@@ -79,24 +80,10 @@ const IntroView: React.FC<IntroViewProps> = ({ onStartJourney }) => {
             <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 group-hover:translate-x-[100%]"></div>
           </button>
         </form>
-      </div>
+      </main>
 
-      <div className="font-mono-display absolute bottom-8 text-xs text-neutral-600">
-        Created by{" "}
-        <a
-          href="https://frontendjuan.com"
-          className="text-neutral-400 underline hover:text-neutral-500"
-        >
-          FrontEndJuan
-        </a>{" "}
-        with the help of Gemini AI. Inspired by the awesome website{" "}
-        <a
-          href="https://whathappenedinmybirthyear.com"
-          className="text-neutral-400 underline hover:text-neutral-500"
-        >
-          What Happend The Year You Were Born
-        </a>
-        .
+      <div className="absolute bottom-8 w-full text-center px-4 z-10">
+        <Footer />
       </div>
     </div>
   );

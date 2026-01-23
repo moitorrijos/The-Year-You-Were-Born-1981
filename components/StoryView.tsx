@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { RefreshCcw } from 'lucide-react';
+import Footer from './Footer';
 
 interface StoryViewProps {
   story: string;
@@ -94,10 +95,10 @@ const StoryView: React.FC<StoryViewProps> = ({ story, year, onReset }) => {
         </div>
       </main>
 
-      {/* Footer / Status */}
-      <footer className="flex-none p-6 text-center text-neutral-500 text-sm font-mono-display border-t border-white/10">
-        {isTyping ? "Decoding historical data..." : "Archive loaded successfully."}
-      </footer>
+      <div className="mx-auto py-8 px-4 text-center">
+        <Footer />   
+      </div> 
+      
       
       <style>{`
         @keyframes blink {
