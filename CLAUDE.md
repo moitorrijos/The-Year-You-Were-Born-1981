@@ -29,6 +29,7 @@ GEMINI_API_KEY=your_api_key_here
 - Vite (build tool)
 - Tailwind CSS (via CDN)
 - Google Gemini AI (`@google/genai`)
+- Turso (database)
 
 ### Application Flow
 
