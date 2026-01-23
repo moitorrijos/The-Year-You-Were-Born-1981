@@ -20,36 +20,43 @@ const StoryView: React.FC<StoryViewProps> = ({ story, year, onReset }) => {
     // Fade in the container first
     setTimeout(() => setOpacity(1), 100);
 
-    let index = 0;
+    if (!isTyping) return;
+
     // Faster typing speed for better UX on long texts
     const typingSpeed = 30; 
     
     const interval = setInterval(() => {
-      if (index < story.length) {
-        setDisplayedText((prev) => prev + story.charAt(index));
-        index++;
+      setDisplayedText((prev) => {
+        // Use prev.length to ensure we don't skip characters if a render frame is dropped
+        if (prev.length < story.length) {
+          return prev + story.charAt(prev.length);
+        }
+        return prev;
+      });
         
-        // Auto-scroll to bottom while typing
-        if (textContainerRef.current) {
-            // Only auto-scroll if user is near bottom to allow reading previous parts
-            const { scrollTop, scrollHeight, clientHeight } = textContainerRef.current;
-            if (scrollHeight - scrollTop - clientHeight < 100) {
-                 textContainerRef.current.scrollTo({ top: scrollHeight, behavior: 'smooth' });
-            }
-        }
-      } else {
-        setIsTyping(false);
-        clearInterval(interval);
-        const buttonContainer = document.querySelector('.bmc-btn-container')
-        if (buttonContainer) {
-          (buttonContainer as HTMLElement).style.visibility = 'visible';
-          (buttonContainer as HTMLElement).style.opacity = '1';
-        }
+      // Auto-scroll to bottom while typing
+      if (textContainerRef.current) {
+          // Only auto-scroll if user is near bottom to allow reading previous parts
+          const { scrollTop, scrollHeight, clientHeight } = textContainerRef.current;
+          if (scrollHeight - scrollTop - clientHeight < 100) {
+              textContainerRef.current.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+          }
       }
     }, typingSpeed);
 
     return () => clearInterval(interval);
-  }, [story]);
+  }, [story, isTyping]);
+
+  useEffect(() => {
+    if (displayedText.length >= story.length && isTyping) {
+      setIsTyping(false);
+      const buttonContainer = document.querySelector('.bmc-btn-container')
+      if (buttonContainer) {
+        (buttonContainer as HTMLElement).style.visibility = 'visible';
+        (buttonContainer as HTMLElement).style.opacity = '1';
+      }
+    }
+  }, [displayedText, story, isTyping]);
 
   // Format the text to handle bolding and newlines slightly better visually
   const formattedText = displayedText.split('\n').map((line, i) => (
