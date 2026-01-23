@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import IntroView from './components/IntroView';
 import TimeWarp from './components/TimeWarp';
 import StoryView from './components/StoryView';
-import { generateYearStory } from './services/gemini';
+import { fetchYearStory } from './services/api';
 import { AppState } from './types';
 
 const App: React.FC = () => {
@@ -18,7 +18,7 @@ const App: React.FC = () => {
     // We don't await here because we want the animation to run in parallel
     // and we will sync up in the TimeWarp onComplete.
     try {
-      const generatedStory = await generateYearStory(year);
+      const generatedStory = await fetchYearStory(year);
       setStory(generatedStory);
     } catch (error) {
       console.error(error);
