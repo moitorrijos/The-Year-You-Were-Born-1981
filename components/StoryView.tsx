@@ -14,6 +14,13 @@ const StoryView: React.FC<StoryViewProps> = ({ story, year, onReset }) => {
   const [opacity, setOpacity] = useState(0);
   const textContainerRef = useRef<HTMLDivElement>(null);
   
+  // Reset text and typing status when the story prop changes 
+  // (e.g., when switching from the fallback loading text to the actual story)
+  useEffect(() => {
+    setDisplayedText('');
+    setIsTyping(true);
+  }, [story]);
+  
   // Audio context for "typing" sound effect could go here, but keeping it visual for now
   
   useEffect(() => {
